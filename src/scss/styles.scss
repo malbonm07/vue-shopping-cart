@@ -1,0 +1,404 @@
+/*##########################    BASE     #############################################*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+/*##########################  VARIABLES  #############################################*/
+
+/* Colors */
+$primary-color: #212E3F;
+$body-color: white;
+$secondary-color: #FCBE46;
+$tertiary-color: #F0F0DE;
+$main-black: #222;
+/* Colors */
+
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
+$body-font: 'Roboto';
+$h1-font-size: 96px;
+$h2-font-size: 60px;
+$h3-font-size: 48px;
+$h4-font-size: 34px;
+$h5-font-size: 24px;
+$h6-font-size: 20px;
+
+$body1-font-size: 16px;
+$body2-font-size: 14px;
+$caption-font-size: 12px;
+
+$main-spacing: 5px;
+/* FONTS */
+
+$main-transition: all .3s linear;
+
+/*###########################     BODY    ############################################*/
+
+
+body {
+  background: $body-color;
+  padding: 0;
+  margin: 0;
+  font-family: $body-font;
+}
+
+/*###########################    END BODY    ############################################*/
+
+/*###########################     navbar    ############################################*/
+.navbar {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: $tertiary-color;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(154, 157, 120,.5);
+}
+.navbar-center {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  &__title {
+    font-size: 14px;
+    span {
+      color: $secondary-color;
+    }
+    @media screen and (min-width: 420px) {
+      font-size: $h5-font-size;
+    }
+  }
+}
+.nav-icon {
+  font-size: 1.5rem;
+  .nav__link {
+    color: red;
+  }
+}
+.cart-btn {
+  position: relative;
+  cursor: pointer;
+}
+.cart-items {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  background: $secondary-color;
+  padding: 0 5px;
+  border-radius: 40%;
+  color: $body-color;
+}
+/*###########################     end navbar    ############################################*/
+
+/*###########################     hero    ############################################*/
+  .hero {
+    min-height: calc(100vh - 60px);
+    background: url('https://images.pexels.com/photos/210463/pexels-photo-210463.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 2s;
+  }
+  .banner {
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+    padding: 2rem;
+    animation-duration: 1s;
+    margin: 0 1rem;
+  }
+  .banner-title {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: $main-spacing;
+    margin-bottom: 3rem;
+    @media screen and (min-width: 768px) {
+      font-size: 3.4rem;
+    }
+  }
+  .banner-btn {
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: $main-spacing;
+    font-size: 1rem;
+    background: $secondary-color;
+    color: $main-black;
+    border: 1px solid $secondary-color;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .banner-btn:hover {
+    background: transparent;
+    color: $secondary-color;
+  }
+  .fadeIn {
+    animation-name: fadeIn;
+    // animation-duration: 5s
+  }
+
+  @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+/*###########################     end hero    ############################################*/
+
+/*###########################     PRODUCTS    ############################################*/
+
+  .products {
+    padding: 4rem 0;
+  }
+  .product {
+    position: relative;
+    overflow: hidden;
+  }
+  .section-title h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 5rem;
+    text-transform: capitalize;
+    letter-spacing: $main-spacing;
+  }
+  .products-center {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+  }
+  .img-container {
+    position: relative;
+    overflow: hidden;
+  }
+  .bag-btn {
+    position: absolute;
+    top: 60%;
+    right: 0%;
+    background: $secondary-color;
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: $main-spacing;
+    font-weight: bold;
+    transition: $main-transition;
+    transform: translateX(101%);
+    cursor: pointer;
+    outline: none;
+  }
+  .bag-btn:hover {
+    color: $body-color;
+  }
+  .fa-shopping-cart {
+    margin-right: 0.5rem;
+  }
+  .img-container:hover .bag-btn {
+    transform: translateX(-5%)
+  }
+  .product-img {
+    display: block;
+    width: 100%;
+    min-height: 12rem;
+    transition: $main-transition;
+  }
+  .img-container:hover .product-img {
+    opacity: 0.5;
+  }
+  .product h3 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    letter-spacing: $main-spacing;
+    text-align: center;
+  }
+  .product h4 {
+    margin-top: 0.7rem;
+    letter-spacing: $main-spacing;
+    color: $secondary-color;
+    text-align: center;
+  }
+/*###########################     END PRODUCTS    ############################################*/
+
+/*###########################     FOOTER    ############################################*/
+
+  .footer {
+    background: #72828c;
+  }
+  .footer-center {
+
+  }
+  .social-footer {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1rem;
+
+    &__box {
+      padding: 1.5rem 0;
+
+      &-title {
+        line-height: 4rem;
+        text-transform: uppercase;
+      }
+      &-list {
+        a {
+          color: $main-black;
+          font-size: 1.2rem;
+          line-height: 2rem;
+        }
+        a:hover {
+          color: white;
+        }
+      }
+    }
+  }
+  .social {
+    &__item {
+      font-size: 2rem;
+      padding: 5px;
+      color: $main-black;
+      border-radius: 50%;
+      transition: .3s;
+    }
+    &__item:hover {
+      color: white;
+    }
+  }
+  .rights-reserved {
+    line-height: 4rem;
+    background: #212E3F;
+    &__description {
+      width: 90vw;
+      margin: 0 auto;
+      max-width: 1170px;
+      color: white;
+      letter-spacing: $main-spacing;
+      font-size: 10px;
+    }
+  }
+
+/*###########################     END FOOTER    ############################################*/
+
+
+/*###########################     CART    ############################################*/
+  .cart-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: $main-transition;
+    background: rgba(240,157,81,0.5);
+    z-index: 2;
+    visibility: hidden;
+  }
+  .cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    /*overflow: scroll;*/
+    background: $body-color;
+    z-index: 10;
+    background: rgb(231,226,221);
+    padding: 1.5rem;
+    transition: $main-transition;
+    margin: 0;
+    transform: translateX(100%);
+  }
+  .showCart {
+    transform: translateX(0);
+  }
+  .transparentBcg {
+    visibility: visible;
+  }
+  @media screen and (min-width: 768px) {
+    .cart {
+      width: 30vw;
+      width: 450px;
+    }
+  }
+  .close-cart {
+    font-size: 1.7rem;
+    text-align: left;
+    display: block;
+    cursor: pointer;
+  }
+  .cart h2 {
+    text-transform: capitalize;
+    text-align: center;
+    letter-spacing: $main-spacing;
+    margin-bottom: 2rem;
+  }
+  .cart-item {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .cart-item img {
+    width: 75px;
+    height: 75px;
+  }
+  .cart-item h4 {
+    font-size: 0.85rem;
+    text-transform: capitalize;
+    letter-spacing: $main-spacing;
+  }
+  .cart-item h5 {
+    margin: 0.5rem 0;
+    letter-spacing: $body-color;
+  }
+  .item-amount {
+    text-align: center;
+  }
+  .remove-item:hover {
+    color: grey;
+    cursor: pointer;
+  }
+  .fa-chevron-up,
+  .fa-chevron-down {
+    color: $secondary-color;
+    cursor: pointer;
+  }
+
+/*###########################    END CART ITEM    ############################################*/
+  .cart-footer {
+    margin-top: 2rem;
+    letter-spacing: $main-spacing;
+    text-align: center;
+  }
+  .cart-footer h3 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+/*###########################     END CART    ############################################*/
