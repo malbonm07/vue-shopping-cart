@@ -53,7 +53,7 @@
           <h2>your cart</h2>
           <div class="cart-content">
             <!-- cart-item -->
-            <div class="cart-product" v-for="(cart, indexCart) in productsBag.productsToBuy" :key="indexCart.key">
+            <div class="cart-product" v-for="(cart, indexCart) in productsBag.products" :key="indexCart.key">
               <cart
               :cartObject="cart"
               :cartIndexObject="indexCart"
@@ -85,9 +85,9 @@ export default {
   data() {
     return {
       productsList: [],
-      products: [],
+      // products: [],
       productsBag: {
-        // productsInBag: [],
+        products: [],
         productsToBuy: [],
         productsTotal: 0,
       },
@@ -98,56 +98,59 @@ export default {
   created() {
     //do something after creating vue instance
     this.productsList = productsList();
-    this.products = [...this.productsList]
-    // this.products = JSON.parse(localStorage.getItem('products' || '[]'));
+    // this.products = [...this.productsList]
+    this.productsBag.products = JSON.parse(localStorage.getItem('products' || '[]'));
   },
   methods: {
     productIndex(index) {
-      // this.products = JSON.parse(localStorage.getItem('products' || '[]'));
-      // if(this.products.length === 0) {
-      //
-      // }
-      if(this.productsId.indexOf(this.products[index].sys.id) < 0) {
-        this.productsBag.productsToBuy.push(this.products[index])
-        this.productsId.push(this.products[index].sys.id)
-        localStorage.setItem("products", JSON.stringify(this.productsBag.productsToBuy));
+      this.products = JSON.parse(localStorage.getItem('products' || '[]'));
+      if(this.productsBag.products.length === 0) {
+        this.productsBag.products.push(this.productsList[index])
+        this.productsId.push(this.productsList[index].sys.id)
+        localStorage.setItem("products", JSON.stringify(this.productsBag.products));
+      }else if(this.productsId.indexOf(this.productsList[index].sys.id) < 0) {
+        this.productsBag.products.push(this.productsList[index])
+        this.productsId.push(this.productsList[index].sys.id)
+        localStorage.setItem("products", JSON.stringify(this.productsBag.products));
         // console.log(this.productsBag.productsBagList)
         // console.log(this.products[index])
       }
     },
     showCart() {
       this.showProp = !this.showProp;
-      this.products = JSON.parse(localStorage.getItem('products'))
+      this.productsBag.products = JSON.parse(localStorage.getItem('products'))
     },
     closeCart() {
       this.showProp = !this.showProp;
     },
     deleteCart(index) {
-      if(this.productsId.indexOf(this.productsBag.productsToBuy[index].sys.id) >= 0) {
-        this.productsId.splice(this.productsId.indexOf(this.productsBag.productsToBuy[index].sys.id), 1)
+      // console.log(this.productsId)
+      // console.log(this.productsId.indexOf(this.productsBag.products[index].sys.id))
+      if(this.productsId.indexOf(this.productsBag.products[index].sys.id) >= 0) {
+        this.productsId.splice(this.productsId.indexOf(this.productsBag.products[index].sys.id), 1)
+        this.productsBag.products.splice(index, 1)
+        localStorage.setItem("products", JSON.stringify(this.productsBag.products));
       }
       // console.log(this.productsId)
-      this.productsBag.productsToBuy.splice(index, 1);
+      // this.productsBag.productsToBuy.splice(index, 1);
       // console.log(this.productsId.indexOf(this.productsBag.productsBagList[index].sys.id))
-      localStorage.setItem("products", JSON.stringify(this.productsBag.productsToBuy));
+      localStorage.setItem("products", JSON.stringify(this.productsBag.products));
     },
     clearAll() {
-      if(this.productsBag.productsToBuy.length >= 0) {
-        this.productsBag.productsToBuy.splice(0)
+      if(this.productsBag.products.length >= 0) {
+        this.productsBag.products.splice(0)
         this.productsId.splice(0)
+        localStorage.setItem("products", JSON.stringify(this.productsBag.products));
       }
-      localStorage.setItem("products", JSON.stringify(this.productsBag.productsToBuy));
+      localStorage.setItem("products", JSON.stringify(this.productsBag.products));
     }
-    // increaseOne(price) {
-    //
-    // }
   },
   computed: {
     cartItems() {
-      return this.productsBag.productsToBuy.length;
+      return this.productsBag.products.length;
     },
     totalCart() {
-      let totalBag = this.productsBag.productsToBuy;
+      let totalBag = this.productsBag.products;
       let total = [];
       totalBag.forEach(cartItem => {
         total.push(cartItem.fields.price)

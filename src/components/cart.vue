@@ -35,7 +35,7 @@ export default {
   created() {
     //do something after creating vue instance
     this.cartPrice = this.cartObject.fields.price
-    console.log(this.cartPrice)
+    // console.log(this.cartPrice)
   },
   methods: {
     remove() {
