@@ -8,7 +8,7 @@
         </button>
       </div>
       <h3>{{product.fields.title}}</h3>
-      <h4>{{product.fields.price}}</h4>
+      <h4>{{product.fields.price | productsFixed}}</h4>
   </div>
 </template>
 
@@ -28,6 +28,11 @@ export default {
   methods: {
     addToBag() {
       this.$emit("selected", this.indexProduct)
+    }
+  },
+  filters: {
+    productsFixed(value) {
+      return value = value.toFixed(2);
     }
   }
 }
