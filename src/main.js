@@ -3,7 +3,10 @@ import './plugins/fontawesome'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import eventBus from "./plugins/event-bus.js";
 
+
+Vue.use(eventBus);
 Vue.config.productionTip = false
 
 new Vue({

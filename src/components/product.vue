@@ -1,8 +1,8 @@
 <template lang="html">
-  <div>
+  <div class="product-div">
       <div class="img-container">
         <img :src="product.fields.image.fields.file.url">
-        <button class="bag-btn">
+        <button class="bag-btn" @click="addToBag()">
           <i class="fas fa-shopping-cart"></i>
           add to bag
         </button>
@@ -20,13 +20,22 @@ export default {
       type: Object,
       required: true,
     },
-    i: {
+    indexProduct: {
       type: Number,
       required: true,
+    }
+  },
+  methods: {
+    addToBag() {
+      this.$emit("selected", this.indexProduct)
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+.product-div {
+  position: relative;
+
+}
 </style>

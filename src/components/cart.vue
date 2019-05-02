@@ -1,21 +1,43 @@
 <template lang="html">
-  <div>
-    <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="product">
+  <div class="cart-item">
+    <img :src="cartObject.fields.image.fields.file.url" alt="product">
     <div>
-      <h4>queen bed</h4>
-      <h5>$9.00</h5>
-      <span class="remove-item">remove</span>
+      <h4>{{cartObject.fields.title}}</h4>
+      <h5>{{cartObject.fields.price}}</h5>
+      <span class="remove-item" @click="remove()">remove</span>
     </div>
     <div>
-      <i class="fas fa-chevron-up"></i>
+      <font-awesome-icon icon="chevron-up"></font-awesome-icon>
       <p class="item-amount">1</p>
-      <i class="fas fa-chevron-down"></i>
+      <font-awesome-icon icon="chevron-down"></font-awesome-icon>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'cart',
+  data() {
+    return {
+      cartPrice: 0,
+    }
+  },
+  props: {
+    cartObject: {
+      type: Object,
+      required: true,
+    },
+    cartIndexObject: {
+      type: Number,
+      required: true,
+    }
+  },
+  methods: {
+    remove() {
+      this.$emit('deleteCartInBag', this.cartIndexObject)
+      // console.log(this.cartIndexObject)
+    }
+  }
 }
 </script>
 
